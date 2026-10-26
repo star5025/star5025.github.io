@@ -1,0 +1,25 @@
+title: "1star"
+author: "1star"
+description: "Notes on software, useful tools, and learning by building."
+url: "https://star5025.github.io"
+baseurl: ""
+lang: en
+timezone: Asia/Shanghai
+theme: minima
+markdown: kramdown
+permalink: /posts/:year/:month/:day/:title/
+show_excerpts: true
+future: false
+show_drafts: false
+header_pages:
+  - about.md
+minima:
+  date_format: "%Y-%m-%d"
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+exclude:
+  - README.md
+  - .pages.yml
+  - Gemfile
+  - Gemfile.lock

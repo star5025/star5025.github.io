@@ -1,0 +1,57 @@
+media:
+  input: assets/images
+  output: /assets/images
+content:
+  - name: posts
+    label: Articles / 文章
+    type: collection
+    path: _posts
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{primary}.md"
+    subfolders: false
+    view:
+      primary: title
+      sort: date
+      order: desc
+    fields:
+      - name: layout
+        type: string
+        default: post
+        hidden: true
+      - name: title
+        label: Title / 标题
+        type: string
+        required: true
+      - name: date
+        label: Date / 日期
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: published
+        label: Publish on website / 发布到网站
+        type: boolean
+        default: false
+      - name: tags
+        label: Tags / 标签
+        type: string
+        list: true
+      - name: body
+        label: Content / 正文
+        type: rich-text
+  - name: about
+    label: About / 关于
+    type: file
+    path: about.md
+    fields:
+      - name: layout
+        type: string
+        default: page
+        hidden: true
+      - name: title
+        type: string
+      - name: permalink
+        type: string
+        hidden: true
+      - name: body
+        type: rich-text
