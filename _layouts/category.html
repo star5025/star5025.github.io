@@ -1,0 +1,9 @@
+---
+layout: default
+---
+{% assign section = site.data.sections | where: 'key', page.nav_key | first %}
+<header class="section-intro"><a class="back-link" href="{{ '/' | relative_url }}"><span data-icon="arrow-left"></span> 返回首页</a><div class="section-intro-line"><span class="section-emblem" data-icon="{{ section.icon }}"></span><p class="eyebrow">{{ section.code }} · {{ section.label }}</p></div><h1>{{ section.title }}</h1><p class="section-description">{{ section.description }}</p></header>
+<section class="journal-section category-journal" aria-labelledby="category-title"><div class="section-head"><h2 id="category-title">{{ section.label }}记录</h2>{% if page.nav_key == 'travel' %}<a class="section-crosslink" href="{{ '/gallery/' | relative_url }}">去影集看看 <span data-icon="arrow-up-right"></span></a>{% endif %}</div>
+{% assign count = 0 %}{% capture rows %}{% for post in site.posts %}{% assign key = post.section | default: 'daily' %}{% if key == section.key %}{% assign count = count | plus: 1 %}{% include post-card.html post=post %}{% endif %}{% endfor %}{% endcapture %}
+{% if count > 0 %}<ul class="post-list">{{ rows }}</ul>{% else %}<div class="section-empty"><span data-icon="{{ section.icon }}"></span><h2>还没有发布{{ section.label }}文章。</h2></div>{% endif %}
+</section>

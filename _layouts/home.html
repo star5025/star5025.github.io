@@ -1,29 +1,10 @@
 ---
 layout: default
 ---
-<section class="intro">
-  <p class="eyebrow">1STAR / PERSONAL NOTES</p>
-  <h1>Build. Learn. Refine.</h1>
-  <p class="intro-copy">Notes on software, useful tools, and the things I learn along the way.</p>
-  <p class="intro-copy" lang="zh-CN">记录开发、工具与日常实践。在动手中学习，在迭代中打磨。</p>
-  <p class="intro-links"><a href="https://github.com/star5025">GitHub ↗</a><span> / </span><a href="{{ '/about/' | relative_url }}">About</a><span> / </span><a href="{{ '/feed.xml' | relative_url }}">RSS</a></p>
-</section>
-<section class="notes" aria-labelledby="notes-title">
-  <h2 id="notes-title">Latest notes <span lang="zh-CN">/ 近期文章</span></h2>
-  {% if site.posts.size > 0 %}
-  <ul class="post-list">
-    {% for post in site.posts %}
-    <li>
-      <span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
-      <h3><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
-      {% if site.show_excerpts %}{{ post.excerpt }}{% endif %}
-    </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-  <div class="empty-state">
-    <p>A fresh page. The first note is on its way.</p>
-    <p lang="zh-CN">这里刚刚开始，第一篇记录即将到来。</p>
-  </div>
-  {% endif %}
+<section class="hero home-intro"><div class="home-intro-copy"><p class="eyebrow">1STAR / 个人博客</p><h1>记录，<em>也创造。</em></h1><p class="hero-copy">开发、生活，以及路上的片段。</p><a class="home-about" href="{{ '/about/' | relative_url }}">关于我 <span data-icon="arrow-up-right"></span></a></div><div class="orbital avatar-frame"><div class="avatar-shell"><span class="avatar-fallback">1star</span><img class="hero-avatar" src="{{ '/assets/images/avatar.jpg' | relative_url }}" width="112" height="112" alt="1star 的头像" decoding="async"></div></div></section>
+<nav class="home-sections" aria-label="浏览栏目">{% for section in site.data.sections %}<a href="{{ section.url | relative_url }}"><span data-icon="{{ section.icon }}"></span><span>{{ section.label }}</span><span data-icon="arrow-up-right"></span></a>{% endfor %}</nav>
+<section class="journal-section" aria-labelledby="writing-title">
+  <div class="section-head"><h2 id="writing-title" tabindex="-1">最近更新</h2><div class="filters" role="group" aria-label="按栏目筛选文章"><button class="filter active" data-filter="all" aria-pressed="true">全部</button>{% for section in site.data.sections %}{% unless section.key == 'gallery' %}<button class="filter" data-filter="{{ section.key }}" aria-pressed="false">{{ section.label }}</button>{% endunless %}{% endfor %}</div></div>
+  <p class="filter-announcement" id="filter-announcement" role="status" aria-live="polite" aria-atomic="true"></p>
+  <ul class="post-list" id="posts">{% for post in site.posts %}{% include post-card.html post=post %}{% endfor %}<li class="filter-empty" id="filter-empty"{% if site.posts.size > 0 %} hidden{% endif %}>还没有发布文章。</li></ul>
 </section>

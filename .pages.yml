@@ -3,7 +3,7 @@ media:
   output: /assets/images
 content:
   - name: posts
-    label: Articles / 文章
+    label: 文章（开发 / 日常 / 旅行）
     type: collection
     path: _posts
     format: yaml-frontmatter
@@ -19,28 +19,44 @@ content:
         default: post
         hidden: true
       - name: title
-        label: Title / 标题
+        label: 标题
         type: string
         required: true
       - name: date
-        label: Date / 日期
+        label: 日期
         type: date
         required: true
         options:
           format: yyyy-MM-dd
+      - name: section
+        label: 栏目
+        type: select
+        default: daily
+        required: true
+        options:
+          values:
+            - label: 开发
+              name: development
+            - label: 日常
+              name: daily
+            - label: 旅行
+              name: travel
+      - name: description
+        label: 简介（可选）
+        type: text
       - name: published
-        label: Publish on website / 发布到网站
+        label: 发布到网站
         type: boolean
         default: false
       - name: tags
-        label: Tags / 标签
+        label: 标签
         type: string
         list: true
       - name: body
-        label: Content / 正文
+        label: 正文
         type: rich-text
   - name: about
-    label: About / 关于
+    label: 关于
     type: file
     path: about.md
     fields:
@@ -53,5 +69,12 @@ content:
       - name: permalink
         type: string
         hidden: true
+      - name: page_type
+        type: string
+        hidden: true
+      - name: nav_key
+        type: string
+        hidden: true
       - name: body
+        label: 正文
         type: rich-text

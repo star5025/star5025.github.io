@@ -1,0 +1,10 @@
+---
+layout: default
+---
+{% assign section = site.data.sections | where: 'key', page.section | first %}
+{% unless section %}{% assign section = site.data.sections | where: 'key', 'daily' | first %}{% endunless %}
+<div class="article-shell"><a class="back-link" href="{{ section.url | relative_url }}"><span data-icon="arrow-left"></span> 返回{{ section.label }}</a><article>
+<header class="article-head"><p class="eyebrow">{{ section.label }} / 文字与记录</p><h1>{{ page.title | escape }}</h1>{% if page.description %}<p class="article-deck">{{ page.description | escape }}</p>{% endif %}<div class="article-byline"><span class="author-mark" data-icon="book-open" aria-hidden="true"></span><span>{{ site.author | escape }}</span><span>·</span><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y年%m月%d日' }}</time></div></header>
+<div class="article-body"><details class="toc" hidden><summary><span><span data-icon="list"></span> 本文目录</span><span data-icon="chevron-down"></span></summary><ol></ol></details>{{ content }}</div>
+<div class="article-bottom"><a class="tag" href="{{ section.url | relative_url }}">{{ section.label }}</a><button class="text-button" id="back-top"><span data-icon="arrow-up"></span> 返回顶部</button></div>
+</article>{% if page.previous %}<a href="{{ page.previous.url | relative_url }}" class="next-note"><small>继续阅读</small><p>{{ page.previous.title | escape }} <span class="next-arrow" data-icon="arrow-up-right"></span></p></a>{% endif %}</div>

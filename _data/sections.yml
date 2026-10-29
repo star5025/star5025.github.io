@@ -1,0 +1,28 @@
+- key: development
+  label: 开发
+  icon: code-xml
+  url: /development/
+  code: DEV / 01
+  title: 从想法，到一次次实现。
+  description: 记录项目历程、技术实践和踩坑过程。
+- key: daily
+  label: 日常
+  icon: notebook-pen
+  url: /daily/
+  code: LIFE / 02
+  title: 一些平常，也值得留下。
+  description: 生活片段、学习随记与偶尔的想法。
+- key: travel
+  label: 旅行
+  icon: compass
+  url: /travel/
+  code: TRAVEL / 03
+  title: 把路上的故事，慢慢记下来。
+  description: 游记、流水账、途中见闻与路线记录。
+- key: gallery
+  label: 影集
+  icon: images
+  url: /gallery/
+  code: ALBUM / 04
+  title: 让画面，替文字说一会儿。
+  description: 收集旅行与日常的照片。

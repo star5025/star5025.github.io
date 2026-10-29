@@ -1,25 +1,28 @@
 title: "1star"
 author: "1star"
-description: "Notes on software, useful tools, and learning by building."
+description: "开发、生活，以及路上的片段。"
 url: "https://star5025.github.io"
 baseurl: ""
-lang: en
+lang: zh-CN
 timezone: Asia/Shanghai
-theme: minima
 markdown: kramdown
+highlighter: rouge
 permalink: /posts/:year/:month/:day/:title/
-show_excerpts: true
 future: false
 show_drafts: false
-header_pages:
-  - about.md
-minima:
-  date_format: "%Y-%m-%d"
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      section: daily
 exclude:
   - README.md
   - .pages.yml
   - Gemfile
   - Gemfile.lock
+  - assets/main.scss
