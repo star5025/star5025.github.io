@@ -1,0 +1,6 @@
+{%- assign photo_src = include.src | default: '' | strip -%}
+{%- assign photo_prefix = photo_src | slice: 0, 8 -%}
+{%- assign local_prefix = photo_src | slice: 0, 15 -%}
+{%- if photo_prefix == 'https://' -%}{{- photo_src -}}
+{%- elsif local_prefix == '/assets/images/' -%}{{- photo_src | relative_url -}}
+{%- endif -%}

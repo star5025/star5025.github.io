@@ -54,7 +54,98 @@ content:
         list: true
       - name: body
         label: 正文
+        description: "图文混排：在正文空行输入 /image，选择 Image 上传或插入图片；也可在 Source 中写 Markdown 图片链接。"
         type: rich-text
+        options:
+          format: markdown
+          path: assets/images
+          extensions: [jpg, jpeg, png, webp, avif, gif]
+          rename: safe
+          switcher: true
+  - name: albums
+    label: 相册 / 影集
+    type: collection
+    path: _albums
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{primary}.md"
+    subfolders: false
+    view:
+      primary: title
+      sort: date
+      order: desc
+    fields:
+      - name: layout
+        type: string
+        default: album
+        hidden: true
+      - name: title
+        label: 相册名称
+        type: string
+        required: true
+      - name: date
+        label: 日期
+        type: date
+        required: true
+        description: 用于排列相册，不代表照片的实际拍摄日期。
+        options:
+          format: yyyy-MM-dd
+      - name: description
+        label: 相册简介（可选）
+        type: text
+      - name: cover
+        label: 相册封面（可选）
+        description: 不选时使用第一张照片的缩略图或原图。
+        type: image
+        options:
+          path: assets/images
+          extensions: [jpg, jpeg, png, webp, avif, gif]
+          rename: safe
+      - name: photos
+        label: 照片列表
+        description: 每项是一张照片，可调整顺序。建议上传压缩后的展示图；可另选缩略图节省列表流量。
+        type: object
+        list:
+          min: 1
+          collapsible:
+            collapsed: true
+            summary: "照片 {index} · {caption}"
+        fields:
+          - name: image
+            label: 照片 / 大图
+            type: image
+            required: true
+            options:
+              path: assets/images
+              extensions: [jpg, jpeg, png, webp, avif, gif]
+              rename: safe
+          - name: thumbnail
+            label: 缩略图（可选）
+            description: 不选则使用同一张照片，不会自动生成压缩版本。
+            type: image
+            options:
+              path: assets/images
+              extensions: [jpg, jpeg, png, webp, avif, gif]
+              rename: safe
+          - name: caption
+            label: 照片说明（可选）
+            type: string
+          - name: alt
+            label: 图片替代文字（可选）
+            description: 供读屏和图片加载失败时使用，不填则使用照片说明或相册名称。
+            type: string
+      - name: published
+        label: 发布到网站
+        description: 关闭后不生成公开相册页；仓库和已上传图片仍是公开的，不能用于保存私密照片。
+        type: boolean
+        default: false
+      - name: body
+        label: 补充文字（可选）
+        type: rich-text
+        options:
+          format: markdown
+          path: assets/images
+          rename: safe
+          switcher: true
   - name: about
     label: 关于
     type: file
@@ -77,4 +168,11 @@ content:
         hidden: true
       - name: body
         label: 正文
+        description: "图文混排：在正文空行输入 /image，选择 Image 上传或插入图片；也可在 Source 中写 Markdown 图片链接。"
         type: rich-text
+        options:
+          format: markdown
+          path: assets/images
+          extensions: [jpg, jpeg, png, webp, avif, gif]
+          rename: safe
+          switcher: true

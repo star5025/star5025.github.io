@@ -13,7 +13,19 @@ show_drafts: false
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+collections:
+  albums:
+    output: true
+    permalink: /gallery/:name/
 defaults:
+  - scope:
+      path: ""
+      type: albums
+    values:
+      layout: album
+      page_type: album
+      nav_key: gallery
+      published: false
   - scope:
       path: ""
       type: posts

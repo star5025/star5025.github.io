@@ -151,6 +151,7 @@
   new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ['class'] });
   new MutationObserver(sync).observe(document.getElementById('search-dialog'), { attributes: true, attributeFilter: ['open'] });
   document.addEventListener('visibilitychange', sync);
+  window.addEventListener('gallery-state-change', sync);
   motionPreference.addEventListener('change', sync);
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);

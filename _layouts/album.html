@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<header class="section-intro album-page-heading"><a class="back-link" href="{{ '/gallery/' | relative_url }}"><span data-icon="arrow-left"></span> 返回影集</a><div class="section-intro-line"><span class="section-emblem" data-icon="images"></span><p class="eyebrow">影集 / PHOTO JOURNAL</p></div><h1>{{ page.title | escape }}</h1>{% if page.description %}<p class="section-description">{{ page.description | escape }}</p>{% endif %}<div class="section-note"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time><span> · {{ page.photos.size | default: 0 }} 张照片</span></div></header>
+{% if content != '' %}<div class="album-description">{{ content }}</div>{% endif %}
+<section class="album-photos" aria-label="{{ page.title | escape }}的照片"><div class="album-grid">
+{% assign valid_photos = 0 %}
+{% for photo in page.photos %}
+  {% capture full_url %}{% include photo-url.html src=photo.image %}{% endcapture %}
+  {% assign thumb_source = photo.thumbnail | default: photo.image %}
+  {% capture thumb_url %}{% include photo-url.html src=thumb_source %}{% endcapture %}
+  {% if thumb_url == '' %}{% assign thumb_url = full_url %}{% endif %}
+  {% assign alt_text = photo.alt | default: photo.caption | default: page.title %}
+  {% if full_url != '' %}{% assign valid_photos = valid_photos | plus: 1 %}<figure class="album-photo"><a class="album-photo-link" href="{{ full_url | escape }}" data-full="{{ full_url | escape }}" data-caption="{{ photo.caption | default: '' | escape }}" data-alt="{{ alt_text | escape }}"><img src="{{ thumb_url | escape }}" alt="{{ alt_text | escape }}" loading="lazy" decoding="async" width="900" height="650"></a>{% if photo.caption and photo.caption != '' %}<figcaption>{{ photo.caption | escape }}</figcaption>{% endif %}</figure>{% endif %}
+{% endfor %}
+</div>{% if valid_photos == 0 %}<p class="album-empty">这本相册暂时没有照片。</p>{% endif %}</section>
